@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pawtect | Pide ayuda en privado</title>
+<link rel="icon" href="logo.png">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--k:#0a0a0a;--b:#1f63e0;--m:#57575c;--l:#dedee2;--p:#f3f3f5}
+*{box-sizing:border-box}body{margin:0;font:400 16px/1.55 Montserrat,system-ui,sans-serif;color:var(--k);background:#fff}
+.w{width:min(960px,100% - 32px);margin:auto}
+header{background:#000;color:#fff}header .w{display:flex;align-items:center;gap:14px;padding:14px 0}
+header img{height:40px;filter:invert(1)}header b{font-size:22px;font-weight:800;letter-spacing:-.02em}header span{color:#a4a4ab;font-size:14px;margin-left:auto}
+nav{border-bottom:1px solid var(--l);background:#fff;position:sticky;top:0}nav .w{display:flex;gap:4px;overflow-x:auto}
+nav button{border:0;background:none;padding:14px 16px;font:600 15px Montserrat,sans-serif;color:var(--m);cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap}
+nav button[aria-selected=true]{color:var(--k);border-color:var(--b)}
+main{padding:32px 0 64px}h1{font-size:clamp(26px,4vw,38px);line-height:1.1;letter-spacing:-.02em;margin:0 0 8px;font-weight:800}
+h2{font-size:20px;margin:28px 0 10px}.mut{color:var(--m)}
+.sos{background:var(--p);border-left:4px solid var(--b);padding:14px 16px;margin:20px 0;font-size:15px}
+label{display:block;font-weight:600;font-size:14px;margin:16px 0 6px}
+input,select,textarea{width:100%;padding:12px;border:1.5px solid #b9b9c0;border-radius:4px;font:inherit;background:#fff;color:var(--k)}
+textarea{min-height:120px}input:focus,select:focus,textarea:focus,button:focus-visible{outline:3px solid var(--b);outline-offset:1px}
+.chk{display:flex;gap:10px;align-items:flex-start;font-weight:500;margin:14px 0 0}.chk input{width:20px;height:20px;margin-top:3px;flex:none}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.btn{background:var(--b);color:#fff;border:0;padding:14px 26px;font:700 15px Montserrat,sans-serif;border-radius:4px;cursor:pointer;margin-top:22px}
+.btn.g{background:#fff;color:var(--k);border:1.5px solid var(--k)}
+.ok{background:var(--p);border:2px solid var(--b);padding:20px;margin-top:20px}.cod{font-size:34px;font-weight:800;letter-spacing:.06em}
+.err{color:#b3261e;font-weight:600;margin-top:12px}
+.tw{overflow-x:auto}table{width:100%;border-collapse:collapse;font-size:14px}th,td{text-align:left;padding:10px 8px;border-bottom:1px solid var(--l);white-space:nowrap}
+tbody tr{cursor:pointer}tbody tr:hover{background:var(--p)}
+.tag{display:inline-block;padding:2px 10px;border-radius:99px;font-size:12px;font-weight:700;background:var(--p)}
+.tag.urgente{background:#b3261e;color:#fff}.tag.alta{background:#ffd9a8}.tag.resuelta{background:#c9f0d4}.tag.en_mediacion{background:#d6e4ff}
+.st{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:18px 0}.st div{border-top:3px solid var(--k);padding-top:8px}.st b{font-size:28px;display:block;line-height:1}
+.nota{border-left:3px solid var(--l);padding:4px 0 4px 12px;margin:10px 0}.hide{display:none}
+@media(max-width:640px){.row,.st{grid-template-columns:1fr 1fr}header span{display:none}header #ini{margin-left:auto}}
+</style></head><body>
+<header><div class="w"><img src="logo.png" alt=""><b>Pawtect</b><span>Tu estilo, tus reglas, tu seguridad</span><button id="ini" class="btn g" style="margin:0 0 0 12px;padding:8px 16px;background:transparent;color:#fff;border-color:#fff">Iniciar sesión</button></div></header>
+<nav><div class="w" role="tablist">
+<button role="tab" data-v="ayuda" aria-selected="true">Pedir ayuda</button>
+<button role="tab" data-v="caso" aria-selected="false">Ver mi caso</button>
+<button role="tab" data-v="panel" aria-selected="false">Panel del colegio</button></div></nav>
+<main class="w">
+
+<section id="ayuda">
+<h1>Cuéntanos qué pasa</h1><p class="mut">Tu mensaje es privado. Solo lo ve el personal del colegio designado para ayudarte.</p>
+<div class="sos"><b>Si estás en peligro ahora,</b> llama a la <b>Línea 100</b> (gratis, 24 horas) o a la <b>Línea 113, opción 5</b> (salud mental). También puedes reportar en <b>siseve.pe</b>.</div>
+<form id="f">
+<div class="row"><div><label for="colegio">Mi colegio</label><select id="colegio" required></select></div>
+<div><label for="acc">Mi accesorio Pawtect</label><select id="acc"><option value="pulsera">Pulsera</option><option value="collar">Collar</option><option value="peluche">Peluche de mochila</option><option value="llavero">Llavero</option><option value="otro">Otro</option></select></div></div>
+<div class="row"><div><label for="tipo">¿Qué está pasando?</label><select id="tipo"></select></div>
+<div><label for="urg">¿Qué tan urgente es?</label><select id="urg"><option value="normal">Puede esperar unos días</option><option value="alta">Es importante</option><option value="urgente">Necesito ayuda ya</option></select></div></div>
+<label for="desc">Cuéntanos con tus palabras</label><textarea id="desc" required minlength="10" maxlength="2000"></textarea>
+<label class="chk"><input type="checkbox" id="anon" checked> Quiero que sea anónimo</label>
+<div id="idb" class="row hide"><div><label for="nom">Mi nombre</label><input id="nom" maxlength="100"></div><div><label for="gr">Grado</label><input id="gr" maxlength="30" placeholder="Ej.: 3.° sec."></div></div>
+<label class="chk"><input type="checkbox" id="pad"> Quiero que avisen a mis padres o apoderado</label>
+<div id="pb" class="hide"><label for="tel">Teléfono de mis padres</label><input id="tel" maxlength="30" inputmode="tel"></div>
+<button class="btn" type="submit">Enviar de forma privada</button><div id="e1" class="err" role="alert"></div>
+</form><div id="r1" class="ok hide"><b>Recibimos tu mensaje.</b><div class="cod" id="cod"></div><p>Guarda este código. Con él puedes ver cómo va tu caso, sin dar tu nombre.</p></div>
+</section>
+
+<section id="caso" class="hide">
+<h1>Ver mi caso</h1><p class="mut">Escribe el código que recibiste al enviar tu mensaje.</p>
+<form id="f2"><label for="c2">Mi código</label><input id="c2" placeholder="PW-XXXXXX" maxlength="12" required>
+<button class="btn" type="submit">Consultar</button><div id="e2" class="err" role="alert"></div></form><div id="r2"></div>
+</section>
+
+<section id="panel" class="hide">
+<div id="lg"><h1>Panel del colegio</h1><p class="mut">Para responsables y psicólogos designados.</p>
+<form id="f3"><label for="em">Correo</label><input id="em" type="email" required autocomplete="username"><label for="pw">Clave</label><input id="pw" type="password" required autocomplete="current-password">
+<button class="btn" type="submit">Entrar</button><div id="e3" class="err" role="alert"></div></form></div>
+<div id="pn" class="hide"><div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap"><h1 style="margin:0" id="hi"></h1><button class="btn g" id="out" style="margin:0">Cerrar sesión</button></div>
+<div class="st" id="st"></div>
+<label for="flt">Filtrar por estado</label><select id="flt" style="max-width:260px"></select>
+<div class="tw" style="margin-top:14px"><table><thead><tr><th>Código</th><th>Fecha</th><th>Tipo</th><th>Urgencia</th><th>Estado</th><th>Colegio</th></tr></thead><tbody id="tb"></tbody></table></div>
+<div id="dt"></div>
+<div id="adm" class="hide"><h2>Usuarios del sistema</h2><p class="mut">Crea las cuentas de los encargados y psicólogos de cada colegio.</p>
+<form id="fu"><div class="row"><div><label for="un">Nombre</label><input id="un" maxlength="100" required></div><div><label for="ue">Correo</label><input id="ue" type="email" required></div></div>
+<div class="row"><div><label for="ur">Rol</label><select id="ur"><option value="responsable">Responsable del colegio</option><option value="psicologo">Psicólogo/a</option><option value="admin">Administrador</option></select></div>
+<div><label for="uc">Colegio</label><select id="uc"></select></div></div>
+<label for="up">Clave inicial (mínimo 8 caracteres)</label><input id="up" type="text" minlength="8" required autocomplete="off">
+<button class="btn" type="submit">Crear usuario</button><div class="err" id="eu" role="alert"></div></form>
+<div class="tw" style="margin-top:16px"><table><thead><tr><th>Nombre</th><th>Correo</th><th>Rol</th><th>Colegio</th></tr></thead><tbody id="tu"></tbody></table></div></div>
+<details style="margin-top:32px"><summary style="cursor:pointer;font-weight:700">Cambiar mi clave</summary>
+<form id="fc"><label for="ca">Clave actual</label><input id="ca" type="password" required autocomplete="current-password"><label for="cn">Clave nueva (mínimo 8 caracteres)</label><input id="cn" type="password" minlength="8" required autocomplete="new-password">
+<button class="btn" type="submit">Guardar clave</button><div class="err" id="ec" role="alert"></div></form></details></div>
+</section>
+</main>
+<script>
+const $=s=>document.querySelector(s),esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const T={acoso_verbal:'Burlas o insultos',acoso_fisico:'Agresión física',exclusion:'Exclusión',ciberacoso:'Ciberacoso',amenaza:'Amenazas',bienestar_emocional:'Me siento mal emocionalmente',otro:'Otro'};
+const E={recibida:'Recibida',en_revision:'En revisión',en_mediacion:'En mediación',resuelta:'Resuelta'},U={normal:'Normal',alta:'Alta',urgente:'Urgente'};
+const fe=d=>new Date(d).toLocaleDateString('es-PE',{day:'2-digit',month:'short',year:'numeric'});
+let tk=sessionStorage.getItem('pw_tk'),us=JSON.parse(sessionStorage.getItem('pw_us')||'null'),casos=[],COL=[];
+async function api(op,{m='GET',b,q=''}={}){const r=await fetch('/api/pawtect?op='+op+q,{method:m,headers:{'Content-Type':'application/json',...(tk?{Authorization:'Bearer '+tk}:{})},body:b?JSON.stringify(b):undefined});
+ const j=await r.json().catch(()=>({}));if(!r.ok){if(r.status===401&&op!=='login')salir();throw new Error(j.error||'Error de conexión')}return j}
+const opts=(o,sel)=>Object.entries(o).map(([k,v])=>`<option value="${k}">${esc(v)}</option>`).join('');
+$('#tipo').innerHTML=opts(T);$('#flt').innerHTML='<option value="">Todos</option>'+opts(E);
+document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>{document.querySelectorAll('nav button').forEach(x=>x.setAttribute('aria-selected',x===b));
+ ['ayuda','caso','panel'].forEach(v=>$('#'+v).classList.toggle('hide',v!==b.dataset.v));if(b.dataset.v==='panel'&&tk)cargar()});
+(async function colegios(){const s=$('#colegio');try{const c=await api('colegios');if(!c.length)throw 0;COL=c;
+ s.innerHTML='<option value="">Elige tu colegio</option>'+c.map(x=>`<option value="${x.id}">${esc(x.nombre)}</option>`).join('')}
+ catch(x){s.innerHTML='<option value="">No se pudieron cargar los colegios</option>';$('#e1').textContent='No se pudo conectar con la base de datos. Recarga la página en un momento.'}})();
+$('#anon').onchange=e=>$('#idb').classList.toggle('hide',e.target.checked);$('#pad').onchange=e=>$('#pb').classList.toggle('hide',!e.target.checked);
+$('#f').onsubmit=async e=>{e.preventDefault();$('#e1').textContent='';
+ try{const r=await api('crear',{m:'POST',b:{colegio_id:$('#colegio').value,accesorio:$('#acc').value,tipo:$('#tipo').value,urgencia:$('#urg').value,descripcion:$('#desc').value,anonimo:$('#anon').checked,nombre:$('#nom').value,grado:$('#gr').value,avisar_padres:$('#pad').checked,contacto_padres:$('#tel').value}});
+  $('#cod').textContent=r.codigo;$('#r1').classList.remove('hide');$('#f').classList.add('hide')}catch(x){$('#e1').textContent=x.message}};
+$('#f2').onsubmit=async e=>{e.preventDefault();$('#e2').textContent='';$('#r2').innerHTML='';
+ try{const r=await api('consultar',{q:'&codigo='+encodeURIComponent($('#c2').value)});
+  $('#r2').innerHTML=`<h2>Estado: <span class="tag ${r.estado}">${E[r.estado]}</span></h2><p class="mut">Enviado el ${fe(r.creado_en)}. Última actualización: ${fe(r.actualizado_en)}.</p>`+
+  (r.notas.length?r.notas.map(n=>`<div class="nota"><small class="mut">${fe(n.creado_en)}</small><br>${esc(n.nota)}</div>`).join(''):'<p>Aún no hay mensajes del colegio. Tu caso ya está registrado.</p>')}catch(x){$('#e2').textContent=x.message}};
+$('#f3').onsubmit=async e=>{e.preventDefault();$('#e3').textContent='';
+ try{const r=await api('login',{m:'POST',b:{email:$('#em').value,clave:$('#pw').value}});tk=r.token;us=r.usuario;sessionStorage.setItem('pw_tk',tk);sessionStorage.setItem('pw_us',JSON.stringify(us));$('#pw').value='';cargar()}catch(x){$('#e3').textContent=x.message}};
+function salir(){tk=us=null;sessionStorage.clear();$('#lg').classList.remove('hide');$('#pn').classList.add('hide');$('#adm').classList.add('hide');$('#ini').textContent='Iniciar sesión'}
+$('#ini').onclick=()=>document.querySelector('nav button[data-v=panel]').click();
+$('#out').onclick=salir;$('#flt').onchange=pintar;
+async function cargar(){if(!tk)return;try{casos=await api('casos');$('#lg').classList.add('hide');$('#pn').classList.remove('hide');$('#hi').textContent='Hola, '+us.nombre;$('#ini').textContent='Mi panel';admin();$('#dt').innerHTML='';pintar()}catch(x){$('#e3').textContent=x.message}}
+function pintar(){const f=$('#flt').value;
+ $('#st').innerHTML=Object.keys(E).map(k=>`<div><b>${casos.filter(c=>c.estado===k).length}</b>${E[k]}</div>`).join('');
+ $('#tb').innerHTML=casos.filter(c=>!f||c.estado===f).map(c=>`<tr data-id="${c.id}"><td><b>${esc(c.codigo)}</b>${c.es_simulado?' <small class="mut">(prueba)</small>':''}</td><td>${fe(c.creado_en)}</td><td>${T[c.tipo]}</td><td><span class="tag ${c.urgencia}">${U[c.urgencia]}</span></td><td><span class="tag ${c.estado}">${E[c.estado]}</span></td><td>${esc(c.colegio)}</td></tr>`).join('')||'<tr><td colspan="6">No hay casos con ese filtro.</td></tr>';
+ document.querySelectorAll('#tb tr[data-id]').forEach(r=>r.onclick=()=>detalle(r.dataset.id))}
+async function detalle(id){try{const {caso:c,seguimientos:s}=await api('caso',{q:'&id='+id});
+ $('#dt').innerHTML=`<h2>${esc(c.codigo)}: ${T[c.tipo]}</h2><p class="mut">${esc(c.colegio)}. Accesorio: ${esc(c.accesorio)}. ${c.anonimo?'Anónimo':'Estudiante: '+esc(c.nombre_estudiante||'sin nombre')+(c.grado?' ('+esc(c.grado)+')':'')}.</p>
+ <p>${esc(c.descripcion)}</p>${c.avisar_padres?`<p class="sos">El estudiante pidió avisar a su familia. Teléfono: ${esc(c.contacto_padres||'no indicado')}</p>`:''}
+ <h2>Seguimiento</h2>${s.map(n=>`<div class="nota"><small class="mut">${fe(n.creado_en)}, ${esc(n.autor||'')}, ${E[n.estado_nuevo]}${n.publico?', visible para el estudiante':''}</small><br>${esc(n.nota)}</div>`).join('')||'<p class="mut">Sin notas todavía.</p>'}
+ <form id="fa"><label for="ne">Nuevo estado</label><select id="ne">${opts(E)}</select><label for="nn">Nota</label><textarea id="nn" required maxlength="1000"></textarea>
+ <label class="chk"><input type="checkbox" id="np"> Mostrar esta nota al estudiante</label><button class="btn" type="submit">Guardar seguimiento</button><div class="err" id="ea"></div></form>`;
+ $('#ne').value=c.estado;$('#dt').scrollIntoView({behavior:'smooth'});
+ $('#fa').onsubmit=async e=>{e.preventDefault();try{await api('actualizar',{m:'POST',b:{id:c.id,estado:$('#ne').value,nota:$('#nn').value,publico:$('#np').checked}});await cargar();detalle(id)}catch(x){$('#ea').textContent=x.message}}}catch(x){alert(x.message)}}
+const ROL={responsable:'Responsable',psicologo:'Psicólogo/a',admin:'Administrador'};
+async function admin(){const a=us.rol==='admin';$('#adm').classList.toggle('hide',!a);if(!a)return;
+ if(!COL.length)COL=await api('colegios').catch(()=>[]);
+ $('#uc').innerHTML='<option value="">Todos (solo administrador)</option>'+COL.map(x=>`<option value="${x.id}">${esc(x.nombre)}</option>`).join('');
+ try{const r=await api('usuarios');$('#tu').innerHTML=r.map(x=>`<tr><td>${esc(x.nombre)}</td><td>${esc(x.email)}</td><td>${ROL[x.rol]}</td><td>${esc(x.colegio||'Todos')}</td></tr>`).join('')}catch(x){$('#eu').textContent=x.message}}
+$('#fu').onsubmit=async e=>{e.preventDefault();$('#eu').textContent='';
+ try{await api('crear_usuario',{m:'POST',b:{nombre:$('#un').value,email:$('#ue').value,rol:$('#ur').value,colegio_id:$('#uc').value,clave:$('#up').value}});e.target.reset();admin()}catch(x){$('#eu').textContent=x.message}};
+$('#fc').onsubmit=async e=>{e.preventDefault();$('#ec').style.color='#b3261e';$('#ec').textContent='';
+ try{await api('cambiar_clave',{m:'POST',b:{actual:$('#ca').value,nueva:$('#cn').value}});e.target.reset();$('#ec').style.color='#1a7f37';$('#ec').textContent='Clave actualizada.'}catch(x){$('#ec').textContent=x.message}};
+if(tk)cargar();
+</script></body></html>
